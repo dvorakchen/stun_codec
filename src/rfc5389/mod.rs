@@ -2,6 +2,7 @@
 //!
 //! [RFC 5389]: https://tools.ietf.org/html/rfc5389
 use self::attributes::*;
+use crate::rfc3489::attributes::ChangedAddress;
 
 pub mod attributes;
 pub mod errors;
@@ -23,6 +24,7 @@ define_attribute_enums!(
         XorMappedAddress2,
         Software,
         AlternateServer,
-        Fingerprint
+        Fingerprint,
+        ChangedAddress
     ]
 );
