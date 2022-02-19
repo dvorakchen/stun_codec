@@ -1,10 +1,10 @@
 [package]
-name = "stun_codec"
+name = "stun_codec_blazh"
 version = "0.1.13"
-authors = ["Takeru Ohta <phjgt308@gmail.com>"]
-description = "Encoders and decoders for STUN (RFC 5389) and its extensions"
-homepage = "https://github.com/sile/stun_codec"
-repository = "https://github.com/sile/stun_codec"
+authors = ["blazh <blazh@163.com>"]
+description = "fork from stun_codec"
+homepage = "https://github.com/blazood/stun_codec"
+repository = "https://github.com/blazood/stun_codec"
 readme = "README.md"
 keywords = ["STUN"]
 categories = ["encoding"]
