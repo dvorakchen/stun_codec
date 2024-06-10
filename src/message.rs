@@ -400,16 +400,12 @@ impl<A: Attribute> MessageDecoder<A> {
             unsafe {
                 let message_mut = &mut *(&mut message as *mut Message<A>);
                 let attr = message_mut.attributes.get_unchecked_mut(i);
-                // message.attributes.set_len(i);
                 if let Err(e) = track!(attr.after_decode(&message)) {
                     message.attributes.set_len(attributes_len);
                     return Err(e);
                 }
             }
         }
-        // unsafe {
-        //     message.attributes.set_len(attributes_len);
-        // }
         Ok(message)
     }
 }
@@ -505,15 +501,11 @@ impl<A: Attribute> Encode for MessageEncoder<A> {
             unsafe {
                 let item_mut = &mut *(&mut item as *mut Message<A>);
                 let attr = item_mut.attributes.get_unchecked_mut(i);
-                item.attributes.set_len(i);
                 if let Err(e) = track!(attr.before_encode(&item)) {
                     item.attributes.set_len(attributes_len);
                     return Err(e);
                 }
             }
-        }
-        unsafe {
-            item.attributes.set_len(attributes_len);
         }
 
         let message_type = Type {
