@@ -398,9 +398,9 @@ impl<A: Attribute> MessageDecoder<A> {
         let attributes_len = message.attributes.len();
         for i in 0..attributes_len {
             unsafe {
-                message.attributes.set_len(i);
                 let message_mut = &mut *(&mut message as *mut Message<A>);
                 let attr = message_mut.attributes.get_unchecked_mut(i);
+                message.attributes.set_len(i);
                 if let Err(e) = track!(attr.after_decode(&message)) {
                     message.attributes.set_len(attributes_len);
                     return Err(e);
@@ -503,9 +503,9 @@ impl<A: Attribute> Encode for MessageEncoder<A> {
         let attributes_len = item.attributes.len();
         for i in 0..attributes_len {
             unsafe {
-                item.attributes.set_len(i);
                 let item_mut = &mut *(&mut item as *mut Message<A>);
                 let attr = item_mut.attributes.get_unchecked_mut(i);
+                item.attributes.set_len(i);
                 if let Err(e) = track!(attr.before_encode(&item)) {
                     item.attributes.set_len(attributes_len);
                     return Err(e);
