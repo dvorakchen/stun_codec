@@ -400,16 +400,16 @@ impl<A: Attribute> MessageDecoder<A> {
             unsafe {
                 let message_mut = &mut *(&mut message as *mut Message<A>);
                 let attr = message_mut.attributes.get_unchecked_mut(i);
-                message.attributes.set_len(i);
+                // message.attributes.set_len(i);
                 if let Err(e) = track!(attr.after_decode(&message)) {
                     message.attributes.set_len(attributes_len);
                     return Err(e);
                 }
             }
         }
-        unsafe {
-            message.attributes.set_len(attributes_len);
-        }
+        // unsafe {
+        //     message.attributes.set_len(attributes_len);
+        // }
         Ok(message)
     }
 }
